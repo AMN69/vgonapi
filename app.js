@@ -1,3 +1,4 @@
+'use strict'
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -18,18 +19,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+console.log("I'm here...")
 app.use('/', indexRouter);
+//app.use('/users', usersRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log("req: ", req)
+  console.log("in error")
   next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  console.log("in error 2: ", err.message)
+  console.log("err.status: ", err.status)
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
