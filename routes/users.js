@@ -4,6 +4,12 @@ var router = express.Router();
 const Email = require('../utils/email')
 
 router.post('/emailtovgt', async (req, res, next) => {
+  var origin = req.get('origin')
+  console.log("origin: ", origin)
+  if (origin !== 'http://127.0.0.1:5500') {
+    res.send("call not authorized / llamada no autorizada")
+    return
+  } 
   const { name, email, phone, subject, message } = req.body
   console.log("req.body: ", req.body)
   try {
