@@ -6,7 +6,7 @@ const Email = require('../utils/email')
 router.post('/emailtovgt', async (req, res, next) => {
   var origin = req.get('origin')
   console.log("origin: ", origin)
-  if (origin !== 'http://127.0.0.1:5500') {
+  if (origin !== 'https://vgonzalez.herokuapp.com') {
     res.send("call not authorized / llamada no autorizada")
     return
   } 
