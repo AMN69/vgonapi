@@ -1,12 +1,13 @@
 'use strict'
 var express = require('express');
 var router = express.Router();
+require("dotenv").config();
 const Email = require('../utils/email')
 
 router.post('/emailtovgt', async (req, res, next) => {
   var origin = req.get('origin')
   console.log("origin: ", origin)
-  if (origin !== 'https://vgonzalez.herokuapp.com') {
+  if (origin !== process.env.ORIGIN) {
     res.send("call not authorized / llamada no autorizada")
     return
   } 
